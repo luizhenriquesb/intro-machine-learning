@@ -123,7 +123,7 @@ diamonds_com_previsao |>
 diamonds_com_previsao |> 
   mape(truth = price, estimate = .pred_price)
 
-#00h38
+# 00h38 
 
 
 
