@@ -1,0 +1,51 @@
+---
+title: "Introdução ao Machine Learning - Curso-R"
+subtitle: "Aula 3: Cross-validation"
+format: html
+editor: visual
+---
+
+#### Recapitulação
+
+-   Uma das maneiras de se proteger do overfitting é separar a base em duas partes, uma de treino e outra de teste
+
+-   Parâmetro: escolhido na base de treino
+
+-   Hiperparâmetro: está na base de teste
+
+-   A métrica da base de treino para minimizar parâmetro é chamada de *função de custo*
+
+-   A métrica da base de teste para caracterizar hiperparâmetro é chamada de métrica, não trocamos o nome
+
+-   A diferença entre parâmetro e hiperparâmetro é importante
+
+-   "Quanto mais complexo for o modelo, menor será o erro de *treino*. Porém, o que importa é o erro de *teste*"
+
+#### Termos
+
+-   Função de custo: a métrica calculada na curva da base de treino
+
+-   Métrica: calculada na base de teste para caracterizar hiperparâmetro (e , no final, escolher hiperparâmetro)
+
+Função `initial_split(dados, prop=3/4)` separa entre dados antigos e novos (feita no começo da análise).
+
+-   Base de treino (dados antigos)
+
+    -   Vamos dividir em duas: uma de Teste (bases de validação) e outra de Treino
+
+-   Base de teste (dados novos)
+
+#### Estratégias
+
+1\) Separar inicialmente a base de dados em duas: treino e teste
+
+```{r, results='hide', echo=FALSE}
+initial_split(dados, prop=3/4) #    3/4 de treino aleatoriamente
+initial_time_split(dados, prop=3/4) # 3/4 de treino respeitando a ordem
+```
+
+#### Regularização
+
+Objetivo: oferecer um parâmetro (um valor que podemos mudar) para termos controle sobre a complexidade da $f(x)$ e assim evitar o overfitting.
+
+No exemplo da regressão linear, haverá um valor ${\lambda}$ que chamaremos de "hiperparâmetro" da regressão. Iremos chutar diferentes valores de ${\lambda}$ até encontrar a melhor $f(x)$.

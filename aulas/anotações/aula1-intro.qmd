@@ -1,0 +1,279 @@
+---
+title: "Introdução ao Machine Learning - Curso-R"
+subtitle: "Aula 1: Introdução"
+format: html
+editor: visual
+---
+
+## Material da Aula
+
+Site do curso: <https://curso-r.github.io/202310-intro-ml/>\
+Slides utilizados: <https://curso-r.github.io/202310-intro-ml/slides/01-intro-ml.html#1>
+
+## Ciclo da Ciência de Dados
+
+O que significa *Modelar*? Modelar significa desenvolver um modelo que fornece as variáveis mais importantes para fazer, por exemplo, uma previsão.
+
+**Material sobre Machine Learning**\
+James; Witten; Hastie; Tibshirani. An Introduction to Statistical Learning.\
+Hastie; Tibshirani; Friedman. The Elements os Statistical Learning.\
+Kuhn; Kjell Johnson. Feature Engineering and Selection: A Practical Approach for Predictive Models.\
+Izbicki; Santos. Aprendizado de máquina: uma abordagem estatística.
+
+**Material sobre R**\
+Wickham; Grolemun. R for Data Science.\
+Tidymodels.
+
+**Forecasting**\
+Hyndman; Athanasopoulos. Forecasting: Principles and Practice.
+
+## O que é Machine Learning?
+
+Termo criado em 1959 por Arthur Samuel. Para este autor, Machine Learning é uma máquina que programa sozinha.
+
+Samuel queria desenvolver um algoritmo de computador capaz de jogar jogos, como xadrez, dama, etc. O nome técnico para essa aplicação é *sistema baseado em conhecimento*.
+
+## Modelagem preditiva
+
+Framework de análise de dados que visa gerar a estimativa mais precisa possível para uma quantidade ou fenômeno (Max Kuhn, 2014).
+
+O curso visa desenvolver um programa capaz de, recebendo dados (input), fornece soluções, respostas (output).
+
+## Conceitos
+
+-   **Supervised Learning**: "Dado que eu tenho X e Y, posso programar o computador para ele me dizer qual o valor de Y na ausência de X".
+
+-   **Unservised Learning**: As conclusões que esse tipo de modelo fornecem *não* são predefinidas por alguém. Clustering é um exmeplo.
+
+-   **Reinforcement Learning:** "Dado que tenho X (input), terei um output. Em seguida, retorno para o programa feedbacks sobre cada output, de modo que ele *aprende*".
+
+## Motivação para o curso
+
+**Exemplo de aplicação de Machine Learning**
+
+Imagine que somos consultores e fomos contratados por uma empresa para oferecer conselhos sobre como aumentar as vendas. Suponha que recebemos um dataset. Pergunta: Quantas vendas a empresa terá se X receber investimento?
+
+**Outro exemplo**
+
+Somos da área de inadimplência e precisamos agir para assessorar clientes em situação iminente de atraso. Obtivemos um dataset com infos. sobre quem *atrasou* e quem *não atrasou* (trata-se de uma variável binária). Pergunta: Qual a probabilidade do contrato "xxx" atrasar a próxima fatura?
+
+### A Função
+
+$$ y\approx f(x)$$
+
+Queremos aproximar uma função $f(x)$. Existem infinitas formas de fazer essa aproximação.
+
+Nos exemplos:
+
+$$f(mídia, investimento)$$
+
+$$f(valor\ da\ parcela,\ tipo\ de\ contrato)$$
+
+## Modo 1 - Regressão e Classificação
+
+Existem dois tipos de problemas em Machine Learning.
+
+**Regressão**
+
+A variável dependente $Y$ é (quase sempre) uma variável contínua.
+
+-   Volume de vendas
+-   Peso
+-   Temperatura
+-   Valor de ações
+
+**Classificação**
+
+A variável dependente $Y$ é (quase sempre) uma variável categórica.
+
+-   Fraude, não fraude
+-   Pagou em dia, não pagou
+-   Cancelou assinatura, não cancelou
+-   Gato, cachorro, cavalo, outro
+
+## Definições e Nomenclaturas
+
+-   $X_1, X_2, ..., X_i$: são as variáveis explicativas (ou v. independentes, preditores, *features*)
+-   $X = X_1, X_2, ..., X_i$: será o conjunto de todas as *features*
+-   $Y$: variável resposta (ou v. dependente ou *target*)
+-   $\hat{Y}$: valor *esperado* (ou predição, estimado, *fitted*)
+-   $f(X)$: conhecido como *modelo* ou *hipótese*
+
+### Observado *versus* Esperado
+
+**Em uma Regressão**
+
+-   $Y$ é um valor *observado* (ou variável dependente ou *target*)
+-   $\hat{Y}$ é um valor *esperado* (ou predição ou estimado ou *fitted*)
+-   $Y - \hat{Y}$ é o resíduo (ou erro): ajuda a saber se o modelo está bom ou não
+
+Por definição, $\hat{Y} - f(x)$, que é o valor que a função $f$ retorna.
+
+**Em uma Classificação**
+
+Há diferenças, no entanto, na nomenclatura fornecida acima para o caso da *classificação*, uma vez que os valores esperados são probabilidades.
+
+-   $Y$ é um valor *observado* (ou *rótulo* ou *target* ou *verdade* ou *truth*)
+-   $\hat{Y}$ e um valor esperado (ou *score* ou *probabilidade predita*)
+-   $log(\hat{Y})$ ou $log(1-\hat{Y})$ é o resíduo (erro)
+
+Por definição, Ŷ - f(x), que é o valor que a função **f** retorna.
+
+### Desempenho *versus* Interpretabilidade da f(x)
+
+Características importantes:
+
+-   Interpretabilidade
+-   Custo computacional
+-   Poder preditivo
+
+### Por que ajustar uma f?
+
+-   Predição
+-   Inferência
+
+**Predição**
+
+Em muitas situações X está disponível facilmente, mas Y não é fácil de descobrir. (Ou mesmo não é possível descobrí-lo). Queremos que $\hat{Y} = \hat{f} (X)$ seja uma boa estimativa (preveja o futuro). Neste caso, *não estamos interessados em como é a estrutura de* $\hat{Y}$ desde que ela apresente boas predições para Y.
+
+A ideia é que a partir de uma $f$ ajustada obter um candidato a $Y$ (através de $X$). Se $Y$ estiver perto (parecido) de $X$, muito bom!
+
+Numa palavra, estamos mais interessado apenas no $Y$.
+
+**Inferência**
+
+Já em inferência, estamos mais interessados em entender a relação entre as variáveis explciativas X e a variável resposta Y. Ou seja, na função.
+
+**Machine Learning**
+
+Aqui, o principal objetivo é mais responder perguntas do que fazer previsões (previsões acabam sendo uma consequÊncia, um bônus).
+
+Os modelos lineares e logísticos são, também, inferenciais. Já, por outro lado, o modelo de árvore de decisão não é inferencial.
+
+```{r}
+knitr::include_graphics("imagens/usos_do_ml.png")
+```
+
+## Métricas - "Melhor f(x)", mas segundo o quê?
+
+-   Queremos a $f(x)$ que **erra menos.**. O critério tradicional é o **Root Mean Squared Error (RMSE)**.
+
+$$RMSE = \sqrt{\frac{1}{N}\sum (y_{i}-\hat{y_{i}})^{2}}$$
+
+```{r}
+  knitr::include_graphics("imagens/residuos.png")
+```
+
+### Existem outras métricas (além da RMSE)
+
+**Mean Absolute Error**
+
+$$MAE=\frac{1}{N}\sum |y_{i}-\hat{y}_{i}|$$ 
+
+**R2: R-squared**
+
+$$R^{2}=1-\frac{\sum (y_{i}-\hat{y}_{i})^{2}}{\sum (y_{i}-\bar{y})^{2}}$$
+
+**Observação**
+
+A métrica de erro que o algoritmo maximiza para encontrar a $f(x)$ é a verossimilhança que maximizamos na estatística.
+
+Na estatística, a **RMSE** é igual ao logaritmo da verossimilhança.
+
+Um estatístico maximiza a verossimilhança para encontrar os parâmetros. No Machine Learning, minimizamos o erro para encontrar a melhor f(x).
+
+Correspondência de verossimilhança com métrica de erro e parâmetro com f(x).
+
+A f(x) é parâmetro.
+
+## Exemplo: Modelo de regressão logística
+
+$$f(x)=\frac{1}{1+e^{\beta _{0}+\beta _{1}x}}$$
+
+Em modelos de classificação, a estratégia é a mesma, porque queremos a curva que erre menos.
+
+**Métrica de erro da regressão logística**
+
+$$D= \frac{-1}{N} \sum [y_{i}\log \hat{y}_{i}+(1-y_{i})\log(1-y_{i})]$$
+
+Em que
+
+$$\hat{y}_{i} = f(x_{i})=\frac{1}{1+e^{-\beta _{0}+\beta _{i}x_{i}}}$$
+
+A diferença entre a regressão logística e a regressão linear é quase exclusivamente a métrica de erro.
+
+## Métricas (resumo)
+
+**Regressão** 
+
+-   RSME
+-   R2
+-   MAE
+-   MAPE
+
+**Classificação** 
+-   Deviance (Cross-Entropy)
+-   Acurácia
+-   AUROC 
+-   Precision
+-   F1
+-   Kappa
+
+Conferir: <https://yardstick.tidymodels.org/articles/metric-types.html>
+
+## Regressão Linear
+
+**Regressão Linear Simples**
+
+$$y = \beta _{0}+\beta _{1}x$$ 
+
+Exemplo no R com dados do pacote `mtcars`:
+
+$$dist = \beta _{0}+\beta _{1}speed$$
+
+```{r, eval=FALSE}
+# Ficaria algo assim
+linear_reg() |>
+  fit(dist ~ speed, data = mtcars)
+```
+
+**Regressão Linear Múltipla**
+
+$$y = \beta _{0}+\beta _{1}x_{1}+...+\beta _{p}x_{p}$$ 
+Exemplo no R com dados do pacote `mtcars`:
+
+$$mpg = \beta _{0}+\beta _{1}wt+\beta _{2}disp$$
+
+```{r, eval=FALSE}
+# Ficaria algo assim
+linear_reg() |>
+  fit(mpg ~ wt + disp, data = mtcars)
+```
+
+## Regressão Linear - "Melhor reta"
+
+Como vimos, a melhor reta é a que **erra menos**. Uma métrica de erro é a RMSE, dada por:
+
+$$RMSE = \sqrt{\frac{1}{N}\sum (y_{i}-\hat{y_{i}})^{2}} = \sqrt{\frac{1}{N}\sum (y_{i}-(\hat{\beta _{0}}+\hat{\beta _{1}}speed))^{2}}$$
+
+Nosso objetivo é encontrar os $\hat{\beta}$ que nos retorne o menor RMSE.
+
+**IMPORTANTE!**
+
+-   O RMSE é a métrica que a regressão usa como **Função de Custo** (para escolher a melhor $f$).
+
+- **Função de Custo**: *métrica* usada para encontrar os melhores parâmetros (betas).
+
+## Qual o valor ótimo para \$\beta_0\$ e $\beta_1\$?
+
+Em um dos exemplos acima, a nossa hipótese é de que:
+
+$$dist = \beta _{0}+\beta _{1}speed$$
+
+O método mais utilizado para otimizar modelos com parâmetros: **Gradient Descent**
+
+Colocamos um \^ em cima dos termos para representar **estimativas**. Ŷ é uma estimativa de Yi. No exemplo,
+
+-   $\hat{\beta_0}$ é uma estimativa de $\beta_0$ e vale -17.5
+-   $\hat{\beta_1}$ é uma estimativa de $\beta_1$ e vale 3.9
+-   $\hat{dist}$*dist-\^* é uma estimativa de $dist$ e vale -17.5 + 3.9 x speed

@@ -1,0 +1,34 @@
+---
+title: "Introdução ao Machine Learning - Curso-R"
+subtitle: "Aula 4: "
+format: html
+editor: visual
+---
+
+#### Recapitulação
+
+O modelo abaixo fica mais complexo quando $\lambda=0$ e menos complexo quando $\lambda=\infty$.
+
+$$
+ RMSE_{regularizado} = RMSE + \lambda \sum_{j=1}^{p}|\beta_{j}|
+$$
+
+Tudo que impedir o $\beta$ de crescer muito é uma forma de regularização. No modelo acima, o $\beta$ é "penalizado".
+
+Outra forma de segurar o crescimento dos $\beta$ é a **regularização Ridge**:
+
+$$
+ RMSE_{regularizado} = RMSE + \lambda \sum_{j=1}^{p}|\beta _{j}^{2}|
+$$
+
+Também é possível misturar os dois:
+
+$$
+RMSE_{regularizado} = RMSE + (\alpha) \times \color{red}{\lambda}\sum_{j = 1}^{p}|\beta_j| + (1 - \alpha) \times \color{red}{\lambda}\sum_{j = 1}^{p}\beta_j^2
+$$
+
+Nessa definição $\alpha$ é chamado de 'mixture' (mistura). Quando $\alpha=1$ temos o LASSO e quando $\alpha=0$ temos Ridge. O $\alpha$ também pode ser tunado.
+
+#### Ridge *versus* LASSO
+
+O LASSO tem uma propriedade muito interessante quando comparada ao Ridge. Por razões matemáticas, ele consegue produzir estamativas esparsas, isto é, alguns coeficientes podem ser exatamente 0.

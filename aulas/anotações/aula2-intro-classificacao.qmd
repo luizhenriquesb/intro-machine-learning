@@ -1,0 +1,54 @@
+---
+title: "Introdução ao Machine Learning - Curso-R"
+subtitle: "Aula 2: Introdução à Classificação"
+format: html
+editor: visual
+---
+
+## Recapitulando
+
+Nosso foco é encontrar uma f(x) que pegue dados de input e transforme em resultados Y. Daí passamos para o programa o X e o Y e ele encontra f(x) para nós.
+
+$$y\approx f(x)$$
+
+Na aula de hoje, vamos ter mais prática de R.
+
+## Tidymodels
+
+O objetivo desse pacote é ajudar na programação para Machine Learning
+
+## Observações
+
+-   A $f(x)$ não necessariamente é linear. É linear porque em $f(x)=\beta _{0}+\beta _{1}x$ estamos buscando escrever os Y como a soma ponderada de um conjunto de X fixos.
+-   Outra coisa imporitante: os beta são parâmetros e são encotrados dentro dos dados. Os betas também minimizam a função de custo.
+
+## Overfitting (sobreajuste)
+
+Não precisamos procurar somente retas \[é?\].
+
+Modelos super flexíveis podem nos levar a situações em que:
+
+$$RMSE=\sum(\hat{f}(x_i)-y_i)^2 = 0$$
+
+**Dúvida**: Mas qual a desvantagem de minimizar o erro até 0?
+
+O overfitting acontece quando um modelo funciona muito pior quando usado com *dados novos* em comparação a sua performance nos dados em que foi treinado. Essa é uma das principais preocupações quando ajustamos modelos em Machine Learning.
+
+**Qual a solução?** sempre testar o modelo com dados novos.
+
+Na base de treino, escolhemos o parâmetro. O erro que vamos calcular é com base em uma função de custo. Assim, vamos escolher o custo ínimo para encontrar os melhores parâmetros dentre da base de *treino*.
+
+##### Modelos arbitrariamente complexos e simples
+
+Nos slide 57 e 58 temos um exemplo intuitivo sobre a relação entre o RMSE e o Grau do Polimônio \[o que é isso? Hiperpâmetro\].
+
+### Dados novos *versus* antigos
+
+-   **Base de treino (dados antigos):** a base em que vamos escolher os parâmetros. A base de histórico que usamospara ajustar o modelo.
+-   **Base de validação:** a base em que vamos escolher os hiperparâmetros
+-   **Base de teste (dados novos):** a base que irá simular a chegada de dados novos, "em produção".
+
+##### Atenção!
+
+-   Quanto mais complexo for o modelo, menor será o **erro de treino**
+-   Mas, o que importa é o **erro de teste**
