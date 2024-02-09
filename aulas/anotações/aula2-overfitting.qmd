@@ -1,0 +1,12 @@
+---
+title: "Introdução ao Machine Learning - Curso-R"
+subtitle: "Aula 2: Overfitting"
+format: html
+editor: visual
+---
+
+## Overfitting
+
+O sobreajuste acontece quando o modelo não funciona bem com dados novos. A solução consiste em sempre testar o nosso modelo dados novos e não somente com os que já temos.
+
+1h03

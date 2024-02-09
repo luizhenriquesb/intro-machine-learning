@@ -132,6 +132,11 @@ diamonds_com_previsao |>
 diamonds_com_previsao |> 
   mape(truth = price, estimate = .pred_price)
 
+# Importante ter em mente que os valores do estimate estão em $ e a correta 
+# interpretação depende da metrica. No caso do RMSE, temos que o modelo "erra"
+# cerca de $2622 para mais ou para menos. No fim, o que queremos é que o valor
+# seja baixo.
+
 # Exemplo de programa "final" ---------------------------------------------
 
 modelo

@@ -168,7 +168,7 @@ $$RMSE = \sqrt{\frac{1}{N}\sum (y_{i}-\hat{y_{i}})^{2}}$$
 
 **Mean Absolute Error**
 
-$$MAE=\frac{1}{N}\sum |y_{i}-\hat{y}_{i}|$$ 
+$$MAE=\frac{1}{N}\sum |y_{i}-\hat{y}_{i}|$$
 
 **R2: R-squared**
 
@@ -204,20 +204,14 @@ A diferença entre a regressão logística e a regressão linear é quase exclus
 
 ## Métricas (resumo)
 
-**Regressão** 
+**Regressão**
 
 -   RSME
 -   R2
 -   MAE
 -   MAPE
 
-**Classificação** 
--   Deviance (Cross-Entropy)
--   Acurácia
--   AUROC 
--   Precision
--   F1
--   Kappa
+**Classificação** - Deviance (Cross-Entropy) - Acurácia - AUROC - Precision - F1 - Kappa
 
 Conferir: <https://yardstick.tidymodels.org/articles/metric-types.html>
 
@@ -225,7 +219,7 @@ Conferir: <https://yardstick.tidymodels.org/articles/metric-types.html>
 
 **Regressão Linear Simples**
 
-$$y = \beta _{0}+\beta _{1}x$$ 
+$$y = \beta _{0}+\beta _{1}x$$
 
 Exemplo no R com dados do pacote `mtcars`:
 
@@ -239,8 +233,7 @@ linear_reg() |>
 
 **Regressão Linear Múltipla**
 
-$$y = \beta _{0}+\beta _{1}x_{1}+...+\beta _{p}x_{p}$$ 
-Exemplo no R com dados do pacote `mtcars`:
+$$y = \beta _{0}+\beta _{1}x_{1}+...+\beta _{p}x_{p}$$ Exemplo no R com dados do pacote `mtcars`:
 
 $$mpg = \beta _{0}+\beta _{1}wt+\beta _{2}disp$$
 
@@ -262,9 +255,9 @@ Nosso objetivo é encontrar os $\hat{\beta}$ que nos retorne o menor RMSE.
 
 -   O RMSE é a métrica que a regressão usa como **Função de Custo** (para escolher a melhor $f$).
 
-- **Função de Custo**: *métrica* usada para encontrar os melhores parâmetros (betas).
+-   **Função de Custo**: *métrica* usada para encontrar os melhores parâmetros (betas).
 
-## Qual o valor ótimo para \$\beta_0\$ e $\beta_1\$?
+## Qual o valor ótimo para \$\beta\_0\$ e \$\beta\_1\$?
 
 Em um dos exemplos acima, a nossa hipótese é de que:
 
