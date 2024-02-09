@@ -43,6 +43,16 @@ especificacao_modelo <- parsnip::linear_reg() |> # passo a)
   parsnip::set_engine("lm") |>                   # passo b)
   parsnip::set_mode("regression")                # passo c)
 
+# Outros exemplos
+
+especificacao_modelo2 <- decision_tree() |> 
+  set_engine("rpart") |> 
+  set_mode("regression")
+
+especificacao_modelo3 <- rand_forest() |> 
+  set_engine("ranger") |> 
+  set_mode("regression")
+
 # Passo 2: Ajustar o modelo -----------------------------------------------
 
 diamonds <- diamonds |> 
@@ -71,7 +81,6 @@ pred <- predict(modelo, new_data = somente_x)
 diamonds_com_previsao <- diamonds |> 
   add_column(pred) |> 
   mutate(.pred_price = exp(.pred))
-
 
 # Entendendo o erro -------------------------------------------------------
 
@@ -123,7 +132,28 @@ diamonds_com_previsao |>
 diamonds_com_previsao |> 
   mape(truth = price, estimate = .pred_price)
 
-# 00h38 
+# Exemplo de programa "final" ---------------------------------------------
+
+modelo
+
+# Salvamos o modelo em um arquivo .rds que pode ser aplicado em varios outros
+# lugares
+saveRDS(modelo, "modelo.rds")
+
+# Lendo o modelo final
+modelo_final <- readRDS("modelo.rds")
+
+# Dados novos (só exemplo)
+dado_novo <- tibble(x = 10)
+
+# Aplicando o modelo nos dados novos
+predict(modelo_final, dado_novo)
+
+
+
+
+
+
 
 
 
