@@ -9,4 +9,28 @@ editor: visual
 
 O sobreajuste acontece quando o modelo não funciona bem com dados novos. A solução consiste em sempre testar o nosso modelo dados novos e não somente com os que já temos.
 
-1h03
+Se quiséssemos, poderíamos obter um RMSE igual à zero simplesmente ajsutando nosso modelo perfeitmente aos dados:
+
+$$
+RMSE = \sum (\hat{f}(x_i)-y_i)^2=0
+$$ Mas, nesse caso, o modelo não funcionaria bem com dados novos. Assim, até que ponto devemos adicionar graus de polinômio para não chegar a essa situação de super ajuste?
+
+Resposta: separamos nossa base de dados em base de treino e base de teste. Na primeira (base de treino), definimos os graus de polinômio e, na segunda (base de teste), testamos o modelo.
+
+![](images/Captura de tela 2024-02-14 193625.png){width="300"}
+
+O quantidade ideal de graus de polinômios é aquela em que temos o menor EQM tanto na base de treino quanto na base de teste.
+
+OBS.: Não somente os graus de polinômios complexificam o modelo. Até mesmo a incorporação de várias variáveis em uma regressão acaba complicando.
+
+## Bases de treino e de teste
+
+-   Na **base de treino** (dados antigos) escolhemos os melhores **parâmetros** (na regressão os parâmetros são os coeficientes)
+
+    -   Escolhemos esses parâmetros por meio de uma **função de custo**
+
+-   Na **base de teste** (dados novos) escolhemos os melhores **hiperparâmetros**
+
+    -   Escolhemos esses hiperparâmetros por meio de **métricas de erro de teste**
+
+"Quanto mais complexo o modelo, menos o erro de treino. Porém, o que importa é o erro de teste".
