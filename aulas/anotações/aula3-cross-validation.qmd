@@ -9,43 +9,74 @@ editor: visual
 
 -   Uma das maneiras de se proteger do overfitting é separar a base em duas partes, uma de treino e outra de teste
 
--   Parâmetro: escolhido na base de treino
+-   Na **base de Treino (dado observado),** usamos uma **função de custo** para escolher **parâmetros**
 
--   Hiperparâmetro: está na base de teste
-
--   A métrica da base de treino para minimizar parâmetro é chamada de *função de custo*
-
--   A métrica da base de teste para caracterizar hiperparâmetro é chamada de métrica, não trocamos o nome
+-   Na **base de Teste (simulação de dado novo)**, usamos **métricas** para escolher **hiperparâmetros**.
 
 -   A diferença entre parâmetro e hiperparâmetro é importante
 
 -   "Quanto mais complexo for o modelo, menor será o erro de *treino*. Porém, o que importa é o erro de *teste*"
 
-#### Termos
-
--   Função de custo: a métrica calculada na curva da base de treino
-
--   Métrica: calculada na base de teste para caracterizar hiperparâmetro (e , no final, escolher hiperparâmetro)
+-   Ao receber a base, a primeira coisa a ser feita é dividi-la em duas partes: Treino e Teste. Não mexeremos na base de Teste. Na base de Treino, vamos também separá-la em várias "partes de teste", que são chamadas de bases de Validação.
 
 Função `initial_split(dados, prop=3/4)` separa entre dados antigos e novos (feita no começo da análise).
 
--   Base de treino (dados antigos)
+## Estratégias
 
-    -   Vamos dividir em duas: uma de Teste (bases de validação) e outra de Treino
-
--   Base de teste (dados novos)
-
-#### Estratégias
-
-1\) Separar inicialmente a base de dados em duas: treino e teste
+### 1) Separar inicialmente a base de dados em duas: treino e teste
 
 ```{r, results='hide', echo=FALSE}
-initial_split(dados, prop=3/4) #    3/4 de treino aleatoriamente
+initial_split(dados, prop=3/4)      # 3/4 de treino aleatoriamente
 initial_time_split(dados, prop=3/4) # 3/4 de treino respeitando a ordem
 ```
 
-#### Regularização
+Fazemos esse procedimento para se proteger de data leakage ou vazamento de informação, que consiste na contaminação da base de treino pela base de teste.
+
+### Regularização
 
 Objetivo: oferecer um parâmetro (um valor que podemos mudar) para termos controle sobre a complexidade da $f(x)$ e assim evitar o overfitting.
 
+A regularização adiciona uma penalidade à função de custo do modelo para evitar que os coeficientes dos parâmetros do modelo se tornem muito grandes.
+
 No exemplo da regressão linear, haverá um valor ${\lambda}$ que chamaremos de "hiperparâmetro" da regressão. Iremos chutar diferentes valores de ${\lambda}$ até encontrar a melhor $f(x)$.
+
+### Complexidade das regressões
+
+Por que um grau 7 de polinômio é mais complexo do que um grau 2? Um dos motivos é que o grau 2 está contido no grau 7.
+
+Outra noção de complexidade é que um modelo com grau 7 de polinômio tem mais variáveis em comparação com um modelo de grau 2, por exemplo.
+
+### Regularização - LASSO
+
+Intuição: para um beta qualquer $\beta_j$ entrar na regressão ele precisará diminuir o erro em uma certa quantidade $\lambda$. Se ele diminuir menos que $\lambda$ esse beta $\beta$ será jogado fora.
+
+**ChatGTP:** Na L1 Regularization, também conhecida como Lasso (Least Absolute Shrinkage and Selection Operator), é adicionada à função de custo uma penalidade proporcional ao valor absoluto dos coeficientes dos parâmetros do modelo. Isso leva à redução de alguns coeficientes a zero, o que ajuda na seleção de características e simplificação do modelo.
+
+Um $RMSE_{regularizado}$ é uma regressão que não deixamos ela crescer como ela "gostaria". Isso acontece ao deixarmos apenas os beta $\beta$ que reduzem o erro em certa quantidade $\lambda$.
+
+Uma dificuldade que aparece está relacionada à comparação de diversos betas $\beta$ de uma só vez. Isso acontece porque podemos ter um beta $\beta$ muito grande, de modo que facilmente ele poderia diminuir o erro abaixo de $\lambda$. Como lidar com isso? Devemos deixar todos os betas na mesma escala. Precisamos transformar os $x$ para deixá-los todos na mesma escala.
+
+Esse método funciona como seleção de variáveis porque obriga que beta $\beta$ seja minimamente importante para entrar no modelo. Ou sejaa, penalizamos a função de custo se os beta $\beta$ forem muito grandes
+
+-   O $\lambda$ é um hiperparâmetro da regressão linear
+
+-   Quanto maior o $\lambda$, mais penalizamos os $\beta$ por serem grandes
+
+### Hiperparâmetros
+
+São parâmetros que têm que ser definidos antes de ajustar o modelo. Não há como achar o valor ótimo diretamente nas funções de custo. Precisam ser achados na força bruta.
+
+```{r, results='hide', echo=FALSE}
+linear_reg(penalty = 0.0) # sem regularização
+linear_reg(penalty = 0.1)
+linear_reg(penalty = 1.0)
+linear_reg(penalty = tune())
+```
+
+O argumento `penalty = tune()` calcula a perda da métrica de erro para cada hiperparâmetro.
+
+**Erro de predição (ou erro de teste)**
+
+**Erro de validação**
+
+Parei em 1h14: voltar alguns minutos para entender o erro de predição e erro de validação. Em seguida, o assunto será cross-validation, que é muito importante.

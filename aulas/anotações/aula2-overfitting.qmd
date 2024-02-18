@@ -13,13 +13,15 @@ Se quiséssemos, poderíamos obter um RMSE igual à zero simplesmente ajsutando 
 
 $$
 RMSE = \sum (\hat{f}(x_i)-y_i)^2=0
-$$ Mas, nesse caso, o modelo não funcionaria bem com dados novos. Assim, até que ponto devemos adicionar graus de polinômio para não chegar a essa situação de super ajuste?
+$$
+
+Mas, nesse caso, o modelo não funcionaria bem com dados novos. Assim, até que ponto devemos adicionar graus de polinômio para não chegar a essa situação de super ajuste?
 
 Resposta: separamos nossa base de dados em base de treino e base de teste. Na primeira (base de treino), definimos os graus de polinômio e, na segunda (base de teste), testamos o modelo.
 
-![](images/Captura de tela 2024-02-14 193625.png){width="300"}
+![](images/Captura%20de%20tela%202024-02-14%20193625.png){width="300"}
 
-O quantidade ideal de graus de polinômios é aquela em que temos o menor EQM tanto na base de treino quanto na base de teste.
+O quantidade ideal de graus de polinômios é aquela em que temos o menor EQM na base de teste.
 
 OBS.: Não somente os graus de polinômios complexificam o modelo. Até mesmo a incorporação de várias variáveis em uma regressão acaba complicando.
 
