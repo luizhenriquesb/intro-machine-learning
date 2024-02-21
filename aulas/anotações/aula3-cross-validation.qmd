@@ -75,8 +75,48 @@ linear_reg(penalty = tune())
 
 O argumento `penalty = tune()` calcula a perda da métrica de erro para cada hiperparâmetro.
 
-**Erro de predição (ou erro de teste)**
+-   Queremos estimar o erro de predição (que não temos como conhecer, porque se refere ao futuro)
 
-**Erro de validação**
+-   O erro de teste (calculado na base de Teste) é a melhor estimativa para o erro de predição
 
-Parei em 1h14: voltar alguns minutos para entender o erro de predição e erro de validação. Em seguida, o assunto será cross-validation, que é muito importante.
+-   O erro de validação é utilizado para definir os hiperparâmetros. Fazer usar a técnica de cross-validation
+
+## Cross-validation
+
+A Validação cruzada estima muito bem o erro de predição. Seu objetivo é encontrar o melhor conjunto de hiperparâmetros
+
+**Estratégia**
+
+-   Dividir o banco de dados em K partes
+
+-   Ajustar o modelo K vezes, sempre deixando um pedaço da base de fora para servir como base de teste
+
+-   Teremos K valores de erros de teste. Tira-se a média dos erros
+
+**Erro de validação cruzada**
+
+$$
+RMSE_{cv}=\frac{1}{5}\sum_{i=1}^{5}RMSE_{Fold_i}  
+$$
+
+O máximo de *folds* que podemos fazer é $n-1$, em que $n = {número\ de\ dados}$. É comum fazer $n = 5$.
+
+**Em pseudo-código**
+
+```{r, echo=FALSE}
+k <- 5
+
+fold <- sample.int(k, nrow(mtcars), replace = TRUE)
+
+for (k in 1:k) {
+  train <- mtcars[fold != k,]
+  valid <- mtcars[fold == k,]
+  
+  # ajusta modelo (train)
+  # metric(valid)
+}
+```
+
+Esse tipo de código é comum no sklearn (Python). No tidymodels, temos funções que fazem isso. Existem outros pacotes que fazem a mesma coisa, a diferença está no grau de controle sobre cada procedimento.
+
+1h44
