@@ -5,7 +5,7 @@ format: html
 editor: visual
 ---
 
-## Material da Aula
+### Material da Aula
 
 Site do curso: <https://curso-r.github.io/202310-intro-ml/>\
 Slides utilizados: <https://curso-r.github.io/202310-intro-ml/slides/01-intro-ml.html#1>

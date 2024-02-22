@@ -25,7 +25,7 @@ O quantidade ideal de graus de polinômios é aquela em que temos o menor EQM na
 
 OBS.: Não somente os graus de polinômios complexificam o modelo. Até mesmo a incorporação de várias variáveis em uma regressão acaba complicando.
 
-## Bases de treino e de teste
+### Bases de treino e de teste
 
 -   Na **base de treino** (dados antigos) escolhemos os melhores **parâmetros** (na regressão os parâmetros são os coeficientes)
 
