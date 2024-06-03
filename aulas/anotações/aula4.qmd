@@ -1,0 +1,23 @@
+---
+title: "Introdução ao Machine Learning - Curso-R"
+subtitle: "Aula 4 - z"
+format: html
+editor: visual
+---
+
+### Pré-processamento de dados
+
+Na etapa de pré-processamento dos dados, é de extrema importância que o código esteja:
+
+1.  Bem documentado
+
+2.  Organizados de tal maneira para que possa ser repetido várias vezes
+
+O segundo tópico é uma preucação
+
+```{r}
+hitters_recipe <- recipe(Salary ~ ., data = hitters_train) |>
+  step_naomit(everything(), skip = TRUE) |>
+  step_rm(all_nominal()) |>
+  step_normalize(all_numeric_predictors())
+```

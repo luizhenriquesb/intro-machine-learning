@@ -7,7 +7,13 @@ editor: visual
 
 ### Recapitulação
 
-O modelo abaixo fica mais complexo quando $\lambda=0$ e menos complexo quando $\lambda=\infty$.
+-   Se uma regressão tiver muitas variáveis o modelo fica mais complexo e sujeito ao overfitting. Uma maneira de "cortar" os betas do modelo, fazer com que eles "paguem um preço para entrar no modelo", é regularizar a regressão
+
+-   O método LASSO de regularização consiste em "jogar algumas colunas fora"
+
+-   Queremos testar vários lambdas (para usar na regularização) e, para tanto, podemos fazer cross-validation (mas existem outras técnicas)
+
+O modelo abaixo fica mais complexo quando $\lambda=0$ (porque deixa os betas variarem livremente) e menos complexo quando $\lambda=\infty$ (porque os betas precisariam ser maiores que esse lambda para entrarem no modelo).
 
 $$
  RMSE_{regularizado} = RMSE + \lambda \sum_{j=1}^{p}|\beta_{j}|
@@ -32,3 +38,5 @@ Nessa definição $\alpha$ é chamado de 'mixture' (mistura). Quando $\alpha=1$ 
 #### Ridge *versus* LASSO
 
 O LASSO tem uma propriedade muito interessante quando comparada ao Ridge. Por razões matemáticas, ele consegue produzir estamativas esparsas, isto é, alguns coeficientes podem ser exatamente 0.
+
+Recapitulação termina em 15min.

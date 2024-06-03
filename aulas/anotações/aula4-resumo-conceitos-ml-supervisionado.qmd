@@ -1,0 +1,54 @@
+---
+title: "Introdução ao Machine Learning - Curso-R"
+subtitle: "Aula 4 - Machine Learning Supervisionado"
+format: html
+editor: visual
+---
+
+## Resumo dos conceitos do Machine Learning Supervisionado
+
+Existme dois tipos de modelos supervisionados
+
+-   Regressão: $Y\ \epsilon\ \mathbb{R}$, isto é, $Y$ é um número
+
+-   Classificação $Y\ \epsilon\ \{0, 1\}^n$, isto é, uma variável binária (ex.: spam/email, comprou/não comprou)
+
+O modelo comete um erro ao "reconstruir" o $Y$. Esse erro é obtido a partir de uma comparação entre o valor observado e o valor esperado. O objetivo do modelo, portanto, é estimar $Y$, de modo que:
+
+$$
+\hat{Y} = \hat{f}(X)
+$$
+
+em que $\hat{f}$ é uma função de predição.
+
+### Funções de predição
+
+-   Regressão linear
+
+-   Regressão logística
+
+-   Deep Learning
+
+-   Árvore de Decisão
+
+-   Etc.
+
+As funções estimadas podem ser problemáticas (quando temos overfitting ou underfitting) ou boas (quando se ajustam de maneira adequada aos nossos dados).
+
+### Cross-validation
+
+Cross-validation é uma técnica que consiste em dividir nossos dados em duas bases: uma de treino, usada para treinar o modelo, e outra de teste, usada para avaliar o desempenho do modelo.
+
+É importante ressaltar que o termo 'validação' frequentemente se refere à etapa de validação cruzada em si, onde avaliamos o modelo em diferentes partições dos dados de treinamento.
+
+Na etapa de treinamento, escolhemos uma função de modelo, como uma regressão linear, árvore de decisão ou rede neural, que será ajustada aos dados de treinamento para aprender os padrões subjacentes. A escolha do modelo geralmente é feita antes do processo de cross-validation e não durante.
+
+Uma vez que temos nossos dados de treino, dividimos a base de treino em k partes (ou folds) na validação cruzada k-fold, onde k-1 partes são usadas para treinamento e 1 parte é usada para validação em cada iteração. Isso nos permite avaliar o desempenho do modelo em diferentes subconjuntos dos dados de treinamento e reduzir o viés na estimativa do desempenho do modelo.
+
+Durante a etapa de validação, variamos os hiperparâmetros do modelo para comparar diferentes configurações e encontrar aquela que produz o melhor desempenho. Os hiperparâmetros, como a taxa de aprendizado, a força da regularização e a profundidade da árvore de decisão, são ajustados para controlar a complexidade do modelo e otimizar seu desempenho em dados não vistos.
+
+Assim, o cross-validation nos permite avaliar e ajustar nosso modelo de forma mais robusta e confiável, garantindo que ele seja generalizável para novos dados.
+
+### Hiperpâmetro
+
+São definidos pelo próprio cientista de dados e servem para controlar a complexidade do modelo (encontrar o equilíbrio certo entre viés e variância, evitar o overfitting ou underfitting).

@@ -5,6 +5,11 @@ format: html
 editor: visual
 ---
 
+```{r, echo=FALSE}
+library(tidyverse)
+library(tidymodels)
+```
+
 ### Recapitulação
 
 -   Uma das maneiras de se proteger do overfitting é separar a base em duas partes, uma de treino e outra de teste
@@ -32,13 +37,35 @@ initial_time_split(dados, prop=3/4) # 3/4 de treino respeitando a ordem
 
 Fazemos esse procedimento para se proteger de data leakage ou vazamento de informação, que consiste na contaminação da base de treino pela base de teste.
 
-### Regularização
+### Regularização (Lasso)
+
+A ideia por trás da regularização é adicionar uma penalidade aos coeficientes do modelo, o que desencoraja que eles sejam muito grandes.
+
+Na regularização L1 (Lasso), uma penalidade é adicionada à soma dos valores absolutos dos coeficientes do modelo. Isso tem o efeito de forçar alguns coeficientes a se tornarem exatamente zero, tornando o modelo mais esparso e selecionando automaticamente um subconjunto das características mais importantes.
+
+Relembrando a **Função de Custo** **RMSE**
+
+$$
+RMSE = \sqrt{\frac{1}{N}\sum(y_i-\hat{y}_i)^2} = \sqrt{\frac{1}{N}\sum(y_i - {\color{Red} {(\hat{\beta}_0 + \hat{\beta}_1x_1 + ... + \hat{\beta}_nx_n)}})^2}
+$$
+
+**RMSE Regularizado**
+
+$$
+RMSE_{Regularizado} = RMSE + {\color{Red} \lambda} \sum_{j=1}^{n}|\beta_j|
+$$
+
+-   O $\lambda$ é um hiperparâmetro da Regressão Linear
+
+-   Quando maior o $\lambda$, mais penalizamos os $\beta$ por serem grandes
 
 Objetivo: oferecer um parâmetro (um valor que podemos mudar) para termos controle sobre a complexidade da $f(x)$ e assim evitar o overfitting.
 
 A regularização adiciona uma penalidade à função de custo do modelo para evitar que os coeficientes dos parâmetros do modelo se tornem muito grandes.
 
 No exemplo da regressão linear, haverá um valor ${\lambda}$ que chamaremos de "hiperparâmetro" da regressão. Iremos chutar diferentes valores de ${\lambda}$ até encontrar a melhor $f(x)$.
+
+IMPORTANTE: Não necessariamente precisamos normalizar quando formos fazer Regressão, mas é necessário fazer quando formos fazer LASSO.
 
 ### Complexidade das regressões
 
@@ -118,5 +145,3 @@ for (k in 1:k) {
 ```
 
 Esse tipo de código é comum no sklearn (Python). No tidymodels, temos funções que fazem isso. Existem outros pacotes que fazem a mesma coisa, a diferença está no grau de controle sobre cada procedimento.
-
-1h44
